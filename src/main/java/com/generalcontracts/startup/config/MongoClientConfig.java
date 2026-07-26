@@ -28,8 +28,8 @@ public class MongoClientConfig extends AbstractMongoClientConfiguration {
     public MongoPropertiesClientSettingsBuilderCustomizer mongoDBDefaultSettings() {
         return new MongoPropertiesClientSettingsBuilderCustomizer( this.resourceLoader, this.mongoProperties);
     }
-/*   @Bean
+   @Bean
     public MongoTemplate mongoTemplate() {
         return new MongoTemplate(mongoClient(), getDatabaseName());
-    }*/
+    }
 }

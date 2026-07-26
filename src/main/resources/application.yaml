@@ -2,17 +2,16 @@ spring:
   application:
     name: smart-contracts-startup
   mongodb:
-    uri: mongodb+srv://connect2dockernet_db_user:connect2dockernet@contract-cluster0.a9whvtn.mongodb.net/general-contracts
-    auto-index-creation: true
-    host: connect2dockernet@contract-cluster0.a9whvtn.mongodb.net
-    port: 27017
-    database: general-contracts
-    username: connect2dockernet_db_user
-    password: kqQaBnfChRjn9Auj
-    ssl:
-      enabled: true
-      invalid-hostname-allowed: true
-      certificate-key-file: classpath:certificate/bundle.pem
+      uri: mongodb+srv://connect2dockernet_db_user:connect2dockernet@contract-cluster0.a9whvtn.mongodb.net/general-contracts
+      auto-index-creation: true
+      host: contract-cluster0.a9whvtn.mongodb.net
+      port: 27017
+      database: general-contracts
+      username: connect2dockernet_db_user
+      password: connect2dockernet
+      ssl:
+        enabled: false
+        certificate: classpath:certificate/clientX509.pem
 
 server:
   port: 8443
