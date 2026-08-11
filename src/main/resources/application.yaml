@@ -2,6 +2,7 @@ spring:
   application:
     name: smart-contracts-startup
   mongodb:
+<<<<<<< Updated upstream
     uri: mongodb+srv://connect2dockernet_db_user:connect2dockernet@contract-cluster0.a9whvtn.mongodb.net/general-contracts
     auto-index-creation: true
     host: connect2dockernet@contract-cluster0.a9whvtn.mongodb.net
@@ -13,6 +14,22 @@ spring:
       enabled: true
       invalid-hostname-allowed: true
       certificate-key-file: classpath:certificate/bundle.pem
+=======
+      #tls uth Uri
+    uri : mongodb+srv://contract-cluster0.a9whvtn.mongodb.net/general-contracts?tls=true
+
+    #basic Auth Uri
+    #uri: mongodb+srv://connect2dockernet_db_user:connect2dockernet@contract-cluster0.a9whvtn.mongodb.net/general-contracts
+    auto-index-creation: true
+    host: contract-cluster0.a9whvtn.mongodb.net
+    port: 27017
+    database: general-contracts
+    username: connect2dockernet_db_user
+    password: connect2dockernet
+    ssl:
+      enabled: true
+      certificate: classpath:certificate/serverX509.pem
+>>>>>>> Stashed changes
 
 server:
   port: 8443

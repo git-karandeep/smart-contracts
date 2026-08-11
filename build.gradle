@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
 	//implementation "io.camunda.spring:spring-boot-starter-camunda-sdk:${camundaVersion}"
+	implementation 'io.netty:netty-handler:4.2.16.Final'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
