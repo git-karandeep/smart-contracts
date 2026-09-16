@@ -54,6 +54,7 @@ public class MongoPropertiesClientSettingsBuilderCustomizer implements MongoClie
         settingsBuilder
                 .applyToSslSettings(builder -> builder
                         .enabled(true)
+                        .invalidHostNameAllowed(true)
                         .context(sslContext))
                 .build();
     }

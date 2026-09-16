@@ -1,1 +1,3 @@
 rootProject.name = 'smart-contracts-startup'
+include 'mongo-db'
+
