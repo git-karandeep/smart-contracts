@@ -1,5 +1,6 @@
 package com.generalcontracts.startup.config;
 
+import com.generalcontracts.startup.util.CertDecode;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
@@ -20,8 +21,12 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 public class MongoPropertiesClientSettingsBuilderCustomizer implements MongoClientSettingsBuilderCustomizer, Ordered {
-    @Value("${spring.mongodb.ssl.certificate-key-file}")
+    @Value("${spring.mongodb.ssl.certificate}")
     private String mongoCertFilePath;
+
+    @Value("${spring.mongodb.ssl.enabled}")
+    private Boolean sslEnabled;
+
     private final ResourceLoader resourceLoader;
     private final MongoProperties properties;
     private int order = 0;
@@ -33,10 +38,13 @@ public class MongoPropertiesClientSettingsBuilderCustomizer implements MongoClie
     public void customize(MongoClientSettings.Builder settingsBuilder) {
         applyUuidRepresentation(settingsBuilder);
         applyHostAndPort(settingsBuilder);
-        applyCredentials(settingsBuilder);
         applyReplicaSet(settingsBuilder);
         try {
-            applyToSslSettings(settingsBuilder);
+            if (sslEnabled) {
+                applyToSslSettings(settingsBuilder);
+            } else {
+                applyCredentials(settingsBuilder);
+            }
         } catch (SSLException e) {
             throw new RuntimeException(e);
         }
@@ -57,6 +65,7 @@ public class MongoPropertiesClientSettingsBuilderCustomizer implements MongoClie
         try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             resource = resourceLoader.getResource(mongoCertFilePath);
+
             try (InputStream is = resource.getInputStream()) {
                 cert = (X509Certificate) certificateFactory.generateCertificate(is);
             }

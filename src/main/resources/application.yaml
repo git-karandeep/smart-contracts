@@ -15,7 +15,6 @@ spring:
       enabled: false
       invalid-hostname-allowed: true
       certificate-key-file: classpath:certificate/bundle.pem
-
 server:
   port: 8443
 
